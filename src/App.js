@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import AddCategory from "./fetchSample/AddCategory";
+import AddCategoryWithAxios from "./fetchSample/AddCategoryWithAxios";
+import UserList from "./fetchSample/UserList";
+import SupplierTable from "./task2/SupplierTable";
 
 function App() {
+  // const hola = () => {
+  //   alert("hola alert!");
+  // };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* propslarla alakalı konunun kodları diğerleri gibi aklında kalmayabilir burada yorum satırı olarak kalsın 
+       <div>Form</div>
+      <TechButton title="Add" width={75} height={75}></TechButton> */}
+
+      {/* <PropClickEventSample hello={hola}></PropClickEventSample> */}
+
+      {/* <SupplierList></SupplierList> */}
+
+      {/* <EffectSample1></EffectSample1> */}
+
+      {/* <UserList></UserList> */}
+      {/* <SupplierTable></SupplierTable> */}
+
+      {/* <AddCategory></AddCategory> */}
+
+      <AddCategoryWithAxios></AddCategoryWithAxios>
+    </>
   );
 }
 
