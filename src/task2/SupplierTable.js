@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useState } from "react";
 import { suppliers } from "../data/suppliers";
 
@@ -65,7 +66,13 @@ function SupplierTable() {
           onChange={(e) => setSearchByName(e.target.value)}
           placeholder="search by name..."
         ></input>
-        <button onClick={() => searchSupplier()}>Search</button>
+        <button
+          color="succsess"
+          variant="outlined"
+          onClick={() => searchSupplier()}
+        >
+          Search
+        </button>
         <div>
           <button onClick={() => orderBy()}>Order By</button>
           <button onClick={() => orderByDesc()}>Order By Desc</button>

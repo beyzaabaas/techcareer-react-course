@@ -5,6 +5,10 @@ import ContactPage from "./routerSample/ContactPage";
 import NoMatch from "./routerSample/NoMatch";
 import ProductList from "./routerSample/ProductList";
 import ProductDetail from "./routerSample/ProductDetail";
+import DataDisplay from "./materialSample/DataDisplay";
+import ProductDataGrid from "./materialSample/ProductDataGrid";
+import AutocomplateSample from "./materialSample/AutocomplateSample";
+
 // import SupplierTable from "./task2/SupplierTable";
 
 function App() {
@@ -44,6 +48,15 @@ function App() {
         <li>
           <Link to="/product">Product</Link>
         </li>
+        <li>
+          <Link to="/datadisplay">Material Data Display</Link>
+        </li>
+        <li>
+          <Link to="/productdatagrid">Product Data Grid</Link>
+        </li>
+        <li>
+          <Link to="/autocomplate">Autocomplate Sample</Link>
+        </li>
       </ul>
 
       <Routes>
@@ -52,6 +65,10 @@ function App() {
         <Route path="/contact" element={<ContactPage />}></Route>
         <Route path="/product" element={<ProductList />}></Route>
         <Route path="/product/:id" element={<ProductDetail />}></Route>
+        <Route path="/datadisplay" element={<DataDisplay />}></Route>
+        <Route path="/productdatagrid" element={<ProductDataGrid />}></Route>
+        <Route path="/autocomplate" element={<AutocomplateSample />}></Route>
+
         {/* siteyi enterladıktan sonra route işleminde hiçbir sayfa ile eşleşmezsse yıldıza düşer bu da 404  */}
         <Route path="*" element={<NoMatch />}></Route>
       </Routes>
