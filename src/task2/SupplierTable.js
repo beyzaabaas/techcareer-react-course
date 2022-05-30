@@ -3,65 +3,69 @@ import { suppliers } from "../data/suppliers";
 
 function SupplierTable() {
   const [supplierTable, setSupplierTable] = useState(suppliers);
+  const [searchByName, setSearchByName] = useState("");
+
+  const searchSupplier = (data) => {
+    let searchData = searchByName.toLowerCase().trim();
+    let newSupplier = suppliers.filter((q) =>
+      q.companyName.toLowerCase().includes(searchData)
+    ); //filtreleme işlemini sabit data üzerinden yapıyoruz.
+    setSupplierTable(newSupplier);
+    setSearchByName("");
+  };
+
+  const removeAll = () => {
+    setSupplierTable([]);
+  };
 
   const removeItem = (id) => {
     let newSupplierTable = supplierTable.filter((item) => item.id !== id);
     setSupplierTable(newSupplierTable);
   };
 
-  // const removeAll = () => {
-  //   setSupplierTable([]);
-  // };
+  const orderBy = () => {
+    let sortSupplier = supplierTable.sort((a, b) => {
+      let fa = a.id,
+        fb = b.id;
 
-  // const searchSupplier = (data) => {
-  //   let searchData = data.toLowerCase().trim();
-  //   let newSupplier = suppliers.filter((q) =>
-  //     q.name.toLowerCase().includes(searchData)
-  //   ); //filtreleme işlemini sabit data üzerinden yapıyoruz.
-  //   setSupplierTable(newSupplier);
-  // };
-  // const orderBy = () => {
-  //   let sortSupplier = supplierTable.sort((a, b) => {
-  //     let fa = a.name.toLowerCase(),
-  //       fb = b.name.toLowerCase();
+      if (fa < fb) {
+        return -1;
+      }
+      if (fa > fb) {
+        return 1;
+      }
+      return 0;
+    });
+    setSupplierTable([...sortSupplier]);
+  };
+  const orderByDesc = () => {
+    let sortSupplier = supplierTable.sort((a, b) => {
+      let fa = a.id,
+        fb = b.id;
 
-  //     if (fa < fb) {
-  //       return -1;
-  //     }
-  //     if (fa > fb) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  //   setSupplierTable([...sortSupplier]);
-  // };
-  // const orderByDesc = () => {
-  //   let sortSupplier = supplierTable.sort((a, b) => {
-  //     let fa = a.name.toLowerCase(),
-  //       fb = b.name.toLowerCase();
+      if (fb < fa) {
+        return -1;
+      }
+      if (fb > fa) {
+        return 1;
+      }
+      return 0;
+    });
+    setSupplierTable([...sortSupplier]);
+  };
 
-  //     if (fb < fa) {
-  //       return -1;
-  //     }
-  //     if (fb > fa) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   });
-  //   setSupplierTable([...sortSupplier]);
-  // };
-
-  // const loadData = () => {
-  //   setSupplierTable(suppliers);
-  // };
+  const loadData = () => {
+    setSupplierTable(suppliers);
+  };
 
   return (
     <>
-      {/* <div>
+      <div>
         <input
-          onChange={(e) => searchSupplier(e.target.value)}
+          onChange={(e) => setSearchByName(e.target.value)}
           placeholder="search by name..."
         ></input>
+        <button onClick={() => searchSupplier()}>Search</button>
         <div>
           <button onClick={() => orderBy()}>Order By</button>
           <button onClick={() => orderByDesc()}>Order By Desc</button>
@@ -71,7 +75,7 @@ function SupplierTable() {
             <button onClick={() => removeAll()}>Remove All</button>
           </div>
         </div>
-      </div> */}
+      </div>
 
       <table>
         <tr>

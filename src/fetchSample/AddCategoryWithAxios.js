@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 function AddCategoryWithAxios() {
@@ -9,7 +10,10 @@ function AddCategoryWithAxios() {
       name: name,
       description: description,
     };
-    console.log(newCategory);
+
+    axios
+      .post("https://northwind.vercel.app/api/categories", newCategory)
+      .then((res) => console.log("Axios response:", res));
   };
   return (
     <>
