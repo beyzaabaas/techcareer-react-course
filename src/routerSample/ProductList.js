@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { cartContext } from "../store/cartContext";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
+  const { cart, setCart } = useContext(cartContext);
 
   let navigate = useNavigate();
 
@@ -15,6 +17,38 @@ function ProductList() {
 
   const goToDetail = (id) => {
     navigate(`/product/${id}`);
+  };
+  const addToCart = (item) => {
+    // ürün sepette varsa adedini arttırır, yoksa ürünü sepete ekler.-
+
+    let cartProduct = cart.find((q) => q.id === item.id);
+    if (cartProduct) {
+      cartProduct.quantity = cartProduct.quantity + 1;
+      setCart([...cart]);
+    } else {
+      let newCartProduct = {
+        id: item.id,
+        name: item.name,
+        price: item.unitPrice,
+        quantity: 1,
+      };
+      setCart([...cart, newCartProduct]);
+    }
+  };
+  const decreaseToCart = (item) => {
+    // eğer sepette ürün yoksa zaten bu fonksiyon çalışmamalı
+    let cartProduct = cart.find((q) => q.id === item.id);
+    if (cartProduct) {
+      cartProduct.quantity = cartProduct.quantity - 1;
+
+      //Eğer ürün adedi 0 olduysa onu sepetten de çıkarmamız gerek
+      if (cartProduct.quantity === 0) {
+        let newCart = cart.filter((q) => q.id !== cartProduct.id);
+        setCart(newCart);
+      } else {
+        setCart([...cart]);
+      }
+    }
   };
   return (
     <>
@@ -41,6 +75,11 @@ function ProductList() {
                     <button onClick={() => goToDetail(item.id)}>
                       Go To Detail
                     </button>
+                  </td>
+                  <td>
+                    <button onClick={() => decreaseToCart(item)}> - </button>
+
+                    <button onClick={() => addToCart(item)}> + </button>
                   </td>
                 </tr>
               );
