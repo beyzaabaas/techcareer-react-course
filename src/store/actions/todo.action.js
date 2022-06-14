@@ -1,0 +1,15 @@
+import { type } from "@testing-library/user-event/dist/type";
+
+export const addToDo = (payload = {}) => {
+  return {
+    type: "ADD_TODO",
+    payload: payload,
+  };
+};
+
+export const deleteToDo = (payload = {}) => {
+  return {
+    type: "DELETE_TODO",
+    payload: payload,
+  };
+};
