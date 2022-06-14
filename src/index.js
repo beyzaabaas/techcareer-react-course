@@ -9,7 +9,7 @@ import todos from "./store/reducers/todo.reducers";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const store = createStore(store);
+const store = createStore(todos);
 root.render(
   // Browser routing olacak yani yaptığım site tek sayfalık bir uygulama değil bir web sitesi yapıyoruz.
   // appin içinde ne varsa cart provider ile sarmlalladık.Artık herkes isterse bu stateden faydalanabilecek.

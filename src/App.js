@@ -12,7 +12,6 @@ import { cartContext } from "./store/cartContext";
 import { useContext } from "react";
 import CartPage from "./routerSample/CartPage";
 import RefHookSample from "./otherHooks/RefHookSample";
-// import RefParent from "./refSample/RefParent";
 import LayoutHookSample from "./otherHooks/LayoutHookSample";
 import IdHooksSample from "./otherHooks/IdHooksSample";
 import AddCategoryWithAxios from "./fetchSample/AddCategoryWithAxios";
@@ -20,6 +19,7 @@ import AddCategory from "./fetchSample/AddCategory";
 import SupplierTable from "./task2/SupplierTable";
 import ToDoList from "./reduxSample/ToDoList";
 import AddToDo from "./reduxSample/AddToDo";
+import RefParent from "./refSample/RefParent";
 // import SupplierTable from "./task2/SupplierTable";
 
 function App() {
@@ -95,6 +95,9 @@ function App() {
         <li>
           <Link to="/todolist">Todo List</Link>
         </li>
+        <li>
+          <Link to="/refsample">Ref Sample</Link>
+        </li>
       </ul>
 
       <Routes>
@@ -112,9 +115,10 @@ function App() {
         <Route path="/idhook" element={<IdHooksSample />}></Route>
         <Route path="/todolist" element={<ToDoList />}></Route>
         <Route path="/adtodo" element={<AddToDo />}></Route>
+        <Route path="/refsample" element={<RefParent />}></Route>
 
         {/* siteyi enterladıktan sonra route işleminde hiçbir sayfa ile eşleşmezsse yıldıza düşer bu da 404  */}
-        {/* <Route path="*" element={<NoMatch />}></Route> */}
+        <Route path="*" element={<NoMatch />}></Route>
       </Routes>
     </>
   );
